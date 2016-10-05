@@ -1,0 +1,23 @@
+{
+  "name": "stm-file_capability",
+  "version": "0.0.1",
+  "author": "stm",
+  "summary": "Manage Linux file capabilities with Puppet",
+  "license": "BSD-2-Clause",
+  "source": "https://github.com/smoeding/puppet-file_capability",
+  "issues_url": "https://github.com/smoeding/puppet-file_capability/issues",
+  "dependencies": [ ],
+  "data_provider": null,
+  "tags": [ "linux", "capability" ],
+  "operatingsystem_support": [ ],
+  "requirements": [
+    {
+      "name": "pe",
+      "version_requirement": ">= 3.7.0"
+    },
+    {
+      "name": "puppet",
+      "version_requirement": ">= 3.7.0"
+    }
+  ]
+}
