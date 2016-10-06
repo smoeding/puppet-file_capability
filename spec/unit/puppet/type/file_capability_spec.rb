@@ -1,13 +1,21 @@
 # file_capability_spec.rb --- Test the file_capability type
 
 require 'spec_helper'
+require 'fileutils'
 require 'tempfile'
 
 describe Puppet::Type.type(:file_capability) do
 
-  tempfile = Tempfile.new('foo').path
+  let(:tempfile) do
+    file = Tempfile.new('foo')
+    tempfile = file.path
+    file.close!
 
-  let :file_capability do
+    FileUtils.touch(tempfile)
+    tempfile
+  end
+
+  let(:file_capability) do
     Puppet::Type.type(:file_capability).new(
       :file       => tempfile,
       :capability => 'cap_foo=eip',
