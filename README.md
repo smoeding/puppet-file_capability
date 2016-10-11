@@ -30,18 +30,18 @@ This module provides the `file_capability` type to set or reset file capabilitie
 
 ### What file_capability affects
 
-* Sets or resets file capabilities for a given file using the `setcap` and `getcap` binaries of the operating system.
+* Sets or resets file capabilities for a given file using the `setcap` and `getcap` binaries provided by the operating system.
 
 ### Setup requirements
 
-* The operating system must provide the `setcap` and `getcap` executables. On Debian these are provided by the `libcap2-bin` package. The package is not managed by this module.
+* The `setcap` and `getcap` executables must be available. On Debian these are provided by the `libcap2-bin` package. The package is not managed by this module.
 * No additional Puppet modules are required for this type.
 
 ## Usage
 
 ### Set a single capability
 
-This capability is used by `ping` and `ping6` to open raw sockets without being setuid:
+Set the capability used by `ping` to be able to open a raw socket without being setuid:
 
 ``` Puppet
 file_capability { '/bin/ping':
@@ -52,7 +52,7 @@ file_capability { '/bin/ping':
 
 ### Set multiple capabilities
 
-This capability set is used by Wireshark:
+This set of capabilities is used by Wireshark to be available to non-root users:
 
 ``` Puppet
 file_capability { '/usr/bin/dumpcap':
@@ -70,7 +70,7 @@ file_capability { '/usr/bin/dumpcap':
 
 ### Clear all capabilities
 
-File capabilities can be removed:
+Remove all file capabilities:
 
 ``` Puppet
 file_capability { '/path/to/executable':
@@ -99,7 +99,7 @@ file_capability { 'foo':
 }
 ```
 
-If Puppet manages the file specified by the `file` parameter, then this type will autorequire that resource.
+If Puppet manages the file specified by the `file` parameter, then this type will autorequire the file resource.
 
 ##### `capability`
 
@@ -116,6 +116,8 @@ Valid capability specifications are for example:
 * `[ 'CAP_DAC_READ_SEARCH=ep', 'CAP_SYS_ADMIN=ep', ]`
 
 See the [`capabilities(7)`](http://man7.org/linux/man-pages/man7/capabilities.7.html) manpage for details and a description of all available capabilities and the meaning of the operator flags.
+
+An error is signaled if the capability specification has an illegal format.
 
 ## Limitations
 
