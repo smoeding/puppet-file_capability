@@ -1,21 +1,16 @@
 # file_capability_spec.rb --- Test the file_capability type
 
 require 'spec_helper'
-require 'fileutils'
 require 'tempfile'
+require 'fileutils'
 
 describe Puppet::Type.type(:file_capability) do
 
-  let(:tempfile) do
-    file = Tempfile.new('foo')
-    tempfile = file.path
-    file.close!
+  let(:tempfile) { Tempfile::open('foo') { |t| t.path } }
 
+  let :file_capability do
     FileUtils.touch(tempfile)
-    tempfile
-  end
 
-  let(:file_capability) do
     Puppet::Type.type(:file_capability).new(
       :file       => tempfile,
       :capability => 'cap_foo=eip',
@@ -58,16 +53,6 @@ describe Puppet::Type.type(:file_capability) do
         :name       => 'foo',
         :file       => '/foo/bar/baz.42',
         :capability => 42,
-      )
-    }.to raise_error(Puppet::Error)
-  end
-
-  it 'should fail for a missing file' do
-    expect {
-      Puppet::Type.type(:file_capability).new(
-        :name       => 'foo',
-        :file       => '/foo/bar/baz.42',
-        :capability => 'cap_foo=eip',
       )
     }.to raise_error(Puppet::Error)
   end

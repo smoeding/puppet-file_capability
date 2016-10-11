@@ -61,7 +61,7 @@ Puppet::Type.newtype(:file_capability) do
 
     validate do |value|
       unless Pathname.new(value).absolute?
-        raise ArgumentError, "File #{value} is not an absolute path"
+        raise ArgumentError, "file #{value} is not an absolute path"
       end
     end
   end
@@ -83,12 +83,12 @@ Puppet::Type.newtype(:file_capability) do
       elsif value.is_a?(String)
         caps = [value]
       else
-        raise Puppet::Error, "Parameter capability must be an array or a string, got #{value.class.name}"
+        raise Puppet::Error, "capability must be an array or a string, got #{value.class.name}"
       end
 
       caps.each do |cap|
         unless cap =~ /^([a-zA-Z0-9_]+)(,[a-zA-Z0-9_]+)*[=+-][eip]*$/
-          raise Puppet::Error, "Malformed capability #{cap}"
+          raise Puppet::Error, "capability #{cap} has the wrong format"
         end
       end
     end
@@ -102,11 +102,11 @@ Puppet::Type.newtype(:file_capability) do
     return if self[:ensure] == :absent
 
     if self[:capability].nil? || self[:capability].empty?
-      raise Puppet::Error, "Parameter capability must be set"
+      raise Puppet::Error, "capability is a required attribute"
     end
 
-    unless File.exists?(self[:file])
-      raise Puppet::Error, "File #{self[:file]} does not exist"
+    if self[:file].nil?
+      raise Puppet::Error, "file is a required attribute"
     end
   end
 end
