@@ -4,6 +4,7 @@ group :test do
   gem 'metadata-json-lint',     :require => false
   gem 'puppetlabs_spec_helper', :require => false
   gem 'rspec-puppet',           :require => false
+  gem 'semantic_puppet',        :require => false
   gem 'json', '< 2.0.0',        :require => false if RUBY_VERSION < '2.0.0'
   gem 'json_pure', '< 2.0.0',   :require => false if RUBY_VERSION < '2.0.0'
 end
