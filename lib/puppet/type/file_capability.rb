@@ -87,7 +87,7 @@ Puppet::Type.newtype(:file_capability) do
       end
 
       caps.each do |cap|
-        unless cap =~ /^([a-zA-Z0-9_]+)(,[a-zA-Z0-9_]+)*[=+-][eip]*$/
+        unless cap =~ %r{^([a-zA-Z0-9_]+)(,[a-zA-Z0-9_]+)*[=+-][eip]*$}
           raise Puppet::Error, "capability #{cap} has the wrong format"
         end
       end
@@ -105,8 +105,6 @@ Puppet::Type.newtype(:file_capability) do
       raise Puppet::Error, 'capability is a required attribute'
     end
 
-    if self[:file].nil?
-      raise Puppet::Error, 'file is a required attribute'
-    end
+    raise Puppet::Error, 'file is a required attribute' if self[:file].nil?
   end
 end

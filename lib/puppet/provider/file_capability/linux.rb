@@ -6,6 +6,8 @@ Puppet::Type.type(:file_capability).provide(:linux) do
   commands setcap: 'setcap'
   commands getcap: 'getcap'
 
+  attr_reader :capability
+
   def initialize(value = {})
     super(value)
     @capability = []
@@ -38,9 +40,9 @@ Puppet::Type.type(:file_capability).provide(:linux) do
     filename = Regexp.escape(resource[:file])
 
     # Extract existing capabilities for the resource
-    if getcap('-v', resource[:file]) =~ /^#{filename} = (.*)/
+    if getcap('-v', resource[:file]) =~ %r{^#{filename} = (.*)}
       # Remember capabilities
-      @capability = $1.split(',').sort.join(' ')
+      @capability = Regexp.last_match(1).split(',').sort.join(' ')
       return true
     end
 
@@ -60,9 +62,5 @@ Puppet::Type.type(:file_capability).provide(:linux) do
   def capability=(value)
     Puppet.debug("file_capability: capability #{resource[:file]} => #{value}")
     setcap('-q', value.join(' '), resource[:file])
-  end
-
-  def capability
-    @capability
   end
 end
