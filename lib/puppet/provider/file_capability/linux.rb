@@ -1,13 +1,12 @@
 # linux.rb --- file_capability linux provider
 
 Puppet::Type.type(:file_capability).provide(:linux) do
+  confine kernel: :linux
 
-  confine :kernel => :linux
+  commands setcap: 'setcap'
+  commands getcap: 'getcap'
 
-  commands :setcap => 'setcap'
-  commands :getcap => 'getcap'
-
-  def initialize(value={})
+  def initialize(value = {})
     super(value)
     @capability = []
   end
@@ -16,7 +15,7 @@ Puppet::Type.type(:file_capability).provide(:linux) do
     Puppet.debug("file_capability: exists? #{resource[:file]}")
 
     # A nonexistent file has no capabilities
-    return false unless File.exists?(resource[:file])
+    return false unless File.exist?(resource[:file])
 
     # Check for unset capabilities, mismatch raises Puppet::ExecutionFailure
     if resource[:capability].nil?
@@ -33,7 +32,6 @@ Puppet::Type.type(:file_capability).provide(:linux) do
     @capability = resource[:capability]
 
     true
-
   rescue Puppet::ExecutionFailure
     # Handle a capability mismatch
 

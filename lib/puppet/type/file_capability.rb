@@ -52,7 +52,7 @@ Puppet::Type.newtype(:file_capability) do
     defaultto :present
   end
 
-  newparam(:file, :namevar => true) do
+  newparam(:file, namevar: true) do
     desc <<-EOT
       The name of the file for which the capabilities should be managed.
       Default is the resource title. The file will be autorequired if it is
@@ -66,7 +66,7 @@ Puppet::Type.newtype(:file_capability) do
     end
   end
 
-  newproperty(:capability, :array_matching => :all) do
+  newproperty(:capability, array_matching: :all) do
     desc <<-EOT
       The capabilities to ensure for the file. This parameter is mandatory
       for ensure => 'present'. The parameter can be a string if only one
@@ -102,11 +102,11 @@ Puppet::Type.newtype(:file_capability) do
     return if self[:ensure] == :absent
 
     if self[:capability].nil? || self[:capability].empty?
-      raise Puppet::Error, "capability is a required attribute"
+      raise Puppet::Error, 'capability is a required attribute'
     end
 
     if self[:file].nil?
-      raise Puppet::Error, "file is a required attribute"
+      raise Puppet::Error, 'file is a required attribute'
     end
   end
 end
