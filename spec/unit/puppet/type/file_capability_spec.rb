@@ -5,38 +5,38 @@ require 'tempfile'
 require 'fileutils'
 
 describe Puppet::Type.type(:file_capability) do
-  let(:tempfile) { Tempfile::open('foo') { |t| t.path } }
+  let(:tempfile) { Tempfile.new('foo').path }
 
   let :file_capability do
     FileUtils.touch(tempfile)
 
     Puppet::Type.type(:file_capability).new(
-      :file       => tempfile,
-      :capability => 'cap_foo=eip',
+      file:       tempfile,
+      capability: 'cap_foo=eip'
     )
   end
 
-  it 'should accept a string as capability' do
+  it 'accepts a string as capability' do
     file_capability[:capability] = 'cap_bar=eip'
     expect(file_capability[:capability]).to eq(['cap_bar=eip'])
   end
 
-  it 'should accept an array as capability' do
+  it 'accepts an array as capability' do
     file_capability[:capability] = ['cap_bar=eip']
     expect(file_capability[:capability]).to eq(['cap_bar=eip'])
   end
 
-  it 'should accept a two element array as capability' do
+  it 'accepts a two element array as capability' do
     file_capability[:capability] = ['cap_bar=eip', 'cap_foo=eip']
     expect(file_capability[:capability]).to eq(['cap_bar=eip', 'cap_foo=eip'])
   end
 
-  it 'should accept two items as capability' do
+  it 'accepts two items as capability' do
     file_capability[:capability] = ['cap_bar,cap_foo=eip']
     expect(file_capability[:capability]).to eq(['cap_bar,cap_foo=eip'])
   end
 
-  it 'should fail for a boolean as capability' do
+  it 'fails for a boolean as capability' do
     expect do
       Puppet::Type.type(:file_capability).new(
         name:       'foo',
@@ -46,7 +46,7 @@ describe Puppet::Type.type(:file_capability) do
     end.to raise_error(Puppet::Error)
   end
 
-  it 'should fail for a number as capability' do
+  it 'fails for a number as capability' do
     expect do
       Puppet::Type.type(:file_capability).new(
         name:       'foo',
@@ -56,7 +56,7 @@ describe Puppet::Type.type(:file_capability) do
     end.to raise_error(Puppet::Error)
   end
 
-  it 'should fail for a missing capability flag' do
+  it 'fails for a missing capability flag' do
     expect do
       Puppet::Type.type(:file_capability).new(
         name:       'foo',
@@ -66,7 +66,7 @@ describe Puppet::Type.type(:file_capability) do
     end.to raise_error(Puppet::Error)
   end
 
-  it 'should fail for a wrong capability flag' do
+  it 'fails for a wrong capability flag' do
     expect do
       Puppet::Type.type(:file_capability).new(
         name:       'foo',
@@ -76,7 +76,7 @@ describe Puppet::Type.type(:file_capability) do
     end.to raise_error(Puppet::Error)
   end
 
-  it 'should fail for a wrong capability operator' do
+  it 'fails for a wrong capability operator' do
     expect do
       Puppet::Type.type(:file_capability).new(
         name:       'foo',
