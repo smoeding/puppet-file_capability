@@ -46,7 +46,7 @@ Style/HashSyntax:
 Style/RedundantReturn:
   Enabled: True
 
-Style/EndOfLine:
+Layout/EndOfLine:
   Enabled: False
 
 Lint/AmbiguousOperator:
@@ -446,6 +446,9 @@ Style/SelfAssignment:
 
 Style/Proc:
   Enabled: True
+
+Style/SymbolProc:
+  Enabled: False
 
 Style/RaiseArgs:
   Enabled: True
