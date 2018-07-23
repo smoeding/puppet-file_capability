@@ -12,7 +12,7 @@ describe Puppet::Type.type(:file_capability) do
 
     Puppet::Type.type(:file_capability).new(
       file:       tempfile,
-      capability: 'cap_foo=eip'
+      capability: 'cap_foo=eip',
     )
   end
 
@@ -37,53 +37,53 @@ describe Puppet::Type.type(:file_capability) do
   end
 
   it 'fails for a boolean as capability' do
-    expect do
+    expect {
       Puppet::Type.type(:file_capability).new(
         name:       'foo',
         file:       '/foo/bar/baz.42',
-        capability: true
+        capability: true,
       )
-    end.to raise_error(Puppet::Error)
+    }.to raise_error(Puppet::Error)
   end
 
   it 'fails for a number as capability' do
-    expect do
+    expect {
       Puppet::Type.type(:file_capability).new(
         name:       'foo',
         file:       '/foo/bar/baz.42',
-        capability: 42
+        capability: 42,
       )
-    end.to raise_error(Puppet::Error)
+    }.to raise_error(Puppet::Error)
   end
 
   it 'fails for a missing capability flag' do
-    expect do
+    expect {
       Puppet::Type.type(:file_capability).new(
         name:       'foo',
         file:       tempfile,
-        capability: 'cap_foo'
+        capability: 'cap_foo',
       )
-    end.to raise_error(Puppet::Error)
+    }.to raise_error(Puppet::Error)
   end
 
   it 'fails for a wrong capability flag' do
-    expect do
+    expect {
       Puppet::Type.type(:file_capability).new(
         name:       'foo',
         file:       tempfile,
-        capability: 'cap_foo=x'
+        capability: 'cap_foo=x',
       )
-    end.to raise_error(Puppet::Error)
+    }.to raise_error(Puppet::Error)
   end
 
   it 'fails for a wrong capability operator' do
-    expect do
+    expect {
       Puppet::Type.type(:file_capability).new(
         name:       'foo',
         file:       tempfile,
-        capability: 'cap_foo$eip'
+        capability: 'cap_foo$eip',
       )
-    end.to raise_error(Puppet::Error)
+    }.to raise_error(Puppet::Error)
   end
 
   it 'does autorequire the file it manages' do

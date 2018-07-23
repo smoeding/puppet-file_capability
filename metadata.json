@@ -6,31 +6,49 @@
   "license": "BSD-2-Clause",
   "source": "https://github.com/smoeding/puppet-file_capability",
   "issues_url": "https://github.com/smoeding/puppet-file_capability/issues",
-  "data_provider": null,
-  "tags": [ "linux", "capability" ],
+  "dependencies": [
+
+  ],
   "operatingsystem_support": [
     {
       "operatingsystem": "Debian",
-      "operatingsystemrelease": [ "8", "9" ]
+      "operatingsystemrelease": [
+        "8",
+        "9"
+      ]
     },
     {
       "operatingsystem": "Ubuntu",
-      "operatingsystemrelease": [ "14.04", "16.04", "17.10" ]
+      "operatingsystemrelease": [
+        "14.04",
+        "16.04",
+        "17.10"
+      ]
     },
     {
       "operatingsystem": "RedHat",
-      "operatingsystemrelease": [ "7" ]
+      "operatingsystemrelease": [
+        "7"
+      ]
     },
     {
       "operatingsystem": "CentOS",
-      "operatingsystemrelease": [ "7" ]
+      "operatingsystemrelease": [
+        "7"
+      ]
     }
   ],
-  "dependencies": [ ],
   "requirements": [
     {
       "name": "puppet",
       "version_requirement": ">= 3.7.0 < 6.0.0"
     }
-  ]
+  ],
+  "tags": [
+    "linux",
+    "capability"
+  ],
+  "pdk-version": "1.6.0",
+  "template-url": "https://github.com/puppetlabs/pdk-templates",
+  "template-ref": "heads/master-0-g6b0d497"
 }
