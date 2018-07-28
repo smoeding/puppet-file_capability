@@ -48,7 +48,7 @@
     "linux",
     "capability"
   ],
-  "pdk-version": "1.6.0",
+  "pdk-version": "1.6.1",
   "template-url": "https://github.com/puppetlabs/pdk-templates",
-  "template-ref": "heads/master-0-g6b0d497"
+  "template-ref": "1.6.1-0-g6b0d497"
 }
