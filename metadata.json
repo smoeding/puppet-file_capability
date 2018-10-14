@@ -5,6 +5,7 @@
   "summary": "Manage Linux file capabilities with Puppet",
   "license": "BSD-2-Clause",
   "source": "https://github.com/smoeding/puppet-file_capability",
+  "project_page": "https://github.com/smoeding/puppet-file_capability",
   "issues_url": "https://github.com/smoeding/puppet-file_capability/issues",
   "dependencies": [
 
