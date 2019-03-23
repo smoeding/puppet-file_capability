@@ -9,8 +9,8 @@
 1. [Overview](#overview)
 2. [Module Description - What the module does and why it is useful](#module-description)
 3. [Setup - The basics of getting started with file_capability](#setup)
-	* [What file_capability affects](#what-file_capability-affects)
-	* [Setup requirements](#setup-requirements)
+    * [What file_capability affects](#what-file_capability-affects)
+    * [Setup requirements](#setup-requirements)
 4. [Usage - Configuration options and additional functionality](#usage)
 5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 5. [Limitations - OS compatibility, etc.](#limitations)
@@ -80,44 +80,7 @@ file_capability { '/path/to/executable':
 
 ## Reference
 
-#### Type: `file_capability`
-
-**Parameters for the `file_capability` type:**
-
-##### `ensure`
-
-Indicate if the capability for the file should be created or removed. Valid options: `present`, `absent`. Default value: `present`
-
-##### `file`
-
-The name of the file for which the capabilities should be managed. This must be an absolute pathname. The resource title is used if this parameter is left unspecified.
-
-``` Puppet
-file_capability { 'foo':
-  file   => '/path/to/executable',
-  ensure => absent,
-}
-```
-
-If Puppet manages the file specified by the `file` parameter, then this type will autorequire the file resource.
-
-##### `capability`
-
-A String or an array of strings with capability specifications. A capability specification has the following format:
-
-* A single capability name or a list of capability names separated by commas
-* An operator character: `=`, `+` or `-`
-* Operator flags using one or multiple lowercase letters: `e`, `i` and `p`
-
-Valid capability specifications are for example:
-
-* `'cap_net_raw=ep'`
-* `'cap_net_admin,cap_net_raw=eip'`
-* `[ 'CAP_DAC_READ_SEARCH=ep', 'CAP_SYS_ADMIN=ep', ]`
-
-See the [`capabilities(7)`](http://man7.org/linux/man-pages/man7/capabilities.7.html) manpage for details and a description of all available capabilities and the meaning of the operator flags.
-
-An error is signaled if the capability specification has an illegal format.
+See [REFERENCE.md](https://github.com/smoeding/puppet-file_capability/blob/master/REFERENCE.md)
 
 ## Limitations
 
@@ -126,7 +89,7 @@ The type uses a regular expression to validate the `capability` parameter. Unfor
 Capabilities are only available on recent operating system releases like RedHat 7 and Debian 8. In addition the file system must support extended attributes to store the capabilities for the file.
 
 The module is currently developed and tested on:
-* Debian 8 (Jessie)
+* Debian 9 (Stretch)
 
 ## Development
 

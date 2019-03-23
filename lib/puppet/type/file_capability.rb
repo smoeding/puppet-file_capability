@@ -48,6 +48,10 @@ Puppet::Type.newtype(:file_capability) do
   EOT
 
   ensurable do
+    desc <<-EOT
+      Specifies whether the file capability should exist.
+    EOT
+
     defaultvalues
     defaultto :present
   end

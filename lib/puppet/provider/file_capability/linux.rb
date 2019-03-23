@@ -1,6 +1,10 @@
 # linux.rb --- file_capability linux provider
 
 Puppet::Type.type(:file_capability).provide(:linux) do
+  desc <<-EOT
+    This provider implements the fikle capabilities type on Linux.
+  EOT
+
   confine kernel: :linux
 
   commands setcap: 'setcap'
