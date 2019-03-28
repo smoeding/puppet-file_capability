@@ -87,7 +87,7 @@ file_capability { '/path/to/executable':
 
 ### Use hiera to create resources
 
-The main class uses the `file_capabilities` hash parameter to create `file_capability` resources. So the following hiera item will create the same resource that is shown in the next usage example:
+The main class uses the `file_capabilities` hash parameter to create `file_capability` resources. So the following hiera item will create the same resource that is shown in the first example:
 
 ``` yaml
 file_capability::file_capabilities:
