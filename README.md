@@ -46,6 +46,15 @@ include file_capability
 
 On Debian based operating systems this will install the `libcap2-bin` package to ensure the required binaries are available. For RedHat based systems the package `libcap` will be installed instead.
 
+The class uses the `file_capabilities` hash parameter to create `file_capability` resources. So the following hiera item will create the same resource that is shown in the next usage example:
+
+``` yaml
+file_capability::file_capabilities:
+  '/bin/ping':
+    ensure:     present
+    capability: 'cap_net_raw=ep'
+```
+
 ### Set a single capability
 
 Set the capability used by `ping` to be able to open a raw socket without being setuid:
