@@ -24,7 +24,7 @@ Manage file capabilities on Linux.
 
 Linux capabilities provide a more fine-grained privilege model than the traditional privileged user (`root`) vs. non-privileged user model. File capabilities associate capabilities with an executable and grant additional capabilities to the process calling the executable (similar to what a setuid binary does in the traditional model).
 
-This module provides the `file_capability` type to set or reset file capabilities for a file.
+This module provides the `file_capability` type to set or reset file capabilities for a file. See the [`capabilities(7)`](http://man7.org/linux/man-pages/man7/capabilities.7.html) man page for details about the available capabilities in your operating system.
 
 ## Setup
 
@@ -45,15 +45,6 @@ include file_capability
 ```
 
 On Debian based operating systems this will install the `libcap2-bin` package to ensure the required binaries are available. For RedHat based systems the package `libcap` will be installed instead.
-
-The class uses the `file_capabilities` hash parameter to create `file_capability` resources. So the following hiera item will create the same resource that is shown in the next usage example:
-
-``` yaml
-file_capability::file_capabilities:
-  '/bin/ping':
-    ensure:     present
-    capability: 'cap_net_raw=ep'
-```
 
 ### Set a single capability
 
@@ -92,6 +83,17 @@ Remove all file capabilities:
 file_capability { '/path/to/executable':
   ensure => absent,
 }
+```
+
+### Use hiera to create resources
+
+The main class uses the `file_capabilities` hash parameter to create `file_capability` resources. So the following hiera item will create the same resource that is shown in the next usage example:
+
+``` yaml
+file_capability::file_capabilities:
+  '/bin/ping':
+    ensure:     present
+    capability: 'cap_net_raw=ep'
 ```
 
 ## Reference
