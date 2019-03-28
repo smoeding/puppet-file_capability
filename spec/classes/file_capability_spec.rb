@@ -90,7 +90,7 @@ describe 'file_capability' do
         {
           file_capabilities: {
             '/bin/ping' => { capability: 'cap_net_raw=ep' },
-          }
+          },
         }
       end
 
@@ -100,18 +100,18 @@ describe 'file_capability' do
           is_expected.to contain_package('libcap2-bin')
             .with_ensure('installed')
 
-        is_expected.to contain_file_capability('/bin/ping')
-          .with_capability('cap_net_raw=ep')
-          .that_requires('Package[libcap2-bin]')
+          is_expected.to contain_file_capability('/bin/ping')
+            .with_capability('cap_net_raw=ep')
+            .that_requires('Package[libcap2-bin]')
         }
       when 'RedHat'
         it {
           is_expected.to contain_package('libcap')
             .with_ensure('installed')
 
-        is_expected.to contain_file_capability('/bin/ping')
-          .with_capability('cap_net_raw=ep')
-          .that_requires('Package[libcap]')
+          is_expected.to contain_file_capability('/bin/ping')
+            .with_capability('cap_net_raw=ep')
+            .that_requires('Package[libcap]')
         }
       else
         raise "Unsupported os #{os}"
