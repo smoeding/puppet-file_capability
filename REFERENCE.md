@@ -3,56 +3,98 @@
 
 ## Table of Contents
 
+**Classes**
+
+* [`file_capability`](#file_capability): Manage Linux file capabilities and the required utility package
+
 **Resource types**
 
-* [`file_capability`](#file_capability): Set file capabilities on Linux. A file capability allows running a program with elevated privileges without the need to make that executable 
+* [`file_capability`](#file_capability): Set file capabilities on Linux.
+
+## Classes
+
+### file_capability
+
+Manage Linux file capabilities and the required utility package
+
+#### Examples
+
+##### Declare the class using hiera provided defaults
+
+```puppet
+include file_capability
+```
+
+#### Parameters
+
+The following parameters are available in the `file_capability` class.
+
+##### `manage_package`
+
+Data type: `Boolean`
+
+Whether to manage the package providing the `getcap` and `setcap`
+executables with this class. If the package is managed by this class it
+will be installed before any `file_capability` resource is used.
+
+##### `package_ensure`
+
+Data type: `String`
+
+The state the package should be in.
+
+##### `package_name`
+
+Data type: `String`
+
+The name of the package to install. This is operating system specific.
+
+##### `file_capabilities`
+
+Data type: `Hash[String,Data]`
+
+A hash used to create `file_capability` resources.
+
+Default value: {}
 
 ## Resource types
 
 ### file_capability
 
-Set file capabilities on Linux. A file capability allows running a program
-with elevated privileges without the need to make that executable a setuid
-binary. Capabilities allow a more fine grained definition of privileges
-for a program. See the capabilities(7) manpage for an overview of Linux
-capabilities.
+File capabilities allow running a program with elevated privileges
+without the need to make that executable a setuid binary. Capabilities
+allow a more fine grained definition of privileges for a program. See the
+capabilities(7) manpage for an overview of Linux capabilities.
 
 The capability parameter can be a string if only one capability should be
 defined and an array for managing multiple capabilities.
 
-The implemented provider uses the 'setcap' program to check if the current
-and the defined capabilities are in sync. In some cases the textual
-represemtation may look different when in fact the capabilities are
-correctly set. By using the 'setcap' program this is handled correctly
-by the operating system.
+The implemented provider uses the 'setcap' program to check if the
+current and the defined capabilities are in sync. In some cases the
+textual represemtation may look different when in fact the capabilities
+are correctly set. By using the 'setcap' program this is handled
+correctly by the operating system.
 
-Example:
+#### Examples
 
-    file_capability { '/bin/ping':
-      ensure     => present,
-      capability => 'cap_net_raw=ep',
-    }
+##### Enable ping to open raw socketw without running setuid
 
-In this example, Puppet will ensure the ping executable has the correct
-capability to be able to open raw sockets without running setuid.
+```puppet
 
-    file_capability { '/usr/bin/dumpcap':
-      capability => 'cap_net_admin,cap_net_raw=eip',
-    }
+file_capability { '/bin/ping':
+  ensure     => present,
+  capability => 'cap_net_raw=ep',
+}
+```
 
-This example shows how to set the Effective, Inheritable and Permitted
-flags for two capabilities at the same time. This ensures the executable
-used by the Wireshark network sniffer can be used by an ordinary user.
+##### Set multiple flags for two capabilities at the same time
 
-    file_capability { 'scanner-access-permissions':
-      ensure     => present,
-      file       => '/usr/local/sbin/scanner',
-      capability => [ 'CAP_DAC_READ_SEARCH=ep', 'CAP_SYS_ADMIN=ep', ],
-    }
+```puppet
 
-This example sets the capabilities to bypass file read permission checks
-and perform additional system administration operations for an
-hypothetical scanner executable.
+file_capability { '/usr/bin/dumpcap':
+  capability => 'cap_net_admin,cap_net_raw=eip',
+}
+```
 
 #### Properties
 

@@ -1,0 +1,5 @@
+# common.yaml --- Common settings
+---
+
+file_capability::manage_package: true
+file_capability::package_ensure: 'installed'

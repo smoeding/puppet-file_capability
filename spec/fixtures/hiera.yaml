@@ -1,0 +1,13 @@
+---
+version: 5
+
+defaults:
+  datadir: modules/file_capability/data
+  data_hash: yaml_data
+
+hierarchy:
+  - name: "OS family"
+    path: "%{facts.os.family}.yaml"
+
+  - name: "common"
+    path: "common.yaml"

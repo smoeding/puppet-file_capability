@@ -1,0 +1,4 @@
+# RedHat.yaml --- Settings specific to the RedHat family
+---
+
+file_capability::package_name: 'libcap'

@@ -34,10 +34,17 @@ This module provides the `file_capability` type to set or reset file capabilitie
 
 ### Setup requirements
 
-* The `setcap` and `getcap` executables must be available. On Debian these are provided by the `libcap2-bin` package. The package is not managed by this module.
 * No additional Puppet modules are required for this type.
 
 ## Usage
+
+### Initialize the class to install the required package
+
+``` Puppet
+include file_capability
+```
+
+On Debian based operating systems this will install the `libcap2-bin` package to ensure the required binaries are available. For RedHat based systems the package `libcap` will be installed instead.
 
 ### Set a single capability
 
