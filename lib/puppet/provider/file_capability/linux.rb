@@ -2,7 +2,7 @@
 
 Puppet::Type.type(:file_capability).provide(:linux) do
   desc <<-EOT
-    This provider implements the fikle capabilities type on Linux.
+    This provider implements the file capabilities type on Linux.
   EOT
 
   confine kernel: :linux
