@@ -1,3 +1,15 @@
+## 2019-03-31 - Release 2.0.0
+
+### Features
+
+- Add the 'file_capability` class to install the required packages.
+- Provide a class parameter to create `file_capability` resources using hiera only.
+- Add OracleLinux-7 as supported operating system.
+
+### Breaking Changes
+
+- Remove support for Puppet 3
+
 ## 2018-10-14 - Release 1.1.0
 
 ### Features
