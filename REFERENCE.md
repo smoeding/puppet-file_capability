@@ -35,7 +35,8 @@ Data type: `Boolean`
 
 Whether to manage the package providing the `getcap` and `setcap`
 executables with this class. If the package is managed by this class it
-will be installed before any `file_capability` resource is created.
+will be installed before any `file_capability` resource is created. The
+default value is `true` as defined in the module hiera data.
 
 ##### `package_ensure`
 
@@ -43,20 +44,22 @@ Data type: `String`
 
 The state the package should be in. Normally this is either one of the
 strings `installed` or `latest` or a specific version number of the
-package.
+package. The module hiera data provides the default value `installed`.
 
 ##### `package_name`
 
 Data type: `String`
 
-The name of the package to install. This is operating system specific.
+The name of the package to install. This parameter is operating system
+specific and the default is taken from the module hiera data.
 
 ##### `file_capabilities`
 
 Data type: `Hash[String,Data]`
 
-A hash used to create `file_capability` resources. This parameter can be
-used to configure file capabilities as hiera hashes.
+A hash used to create `file_capability` resources. This parameter helps
+to configure file capabilities in hiera without the need to create an
+additional helper class.
 
 Default value: {}
 
