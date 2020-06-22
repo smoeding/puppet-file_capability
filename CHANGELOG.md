@@ -1,3 +1,13 @@
+## 2020-06-22 - Release 3.1.0
+
+### Features
+
+- Add Support for Debian 10 (Buster)
+- Add Support for Ubuntu 20.04 (Focal Fossa)
+- Add Support for RedHat-8
+- Add Support for CentOS-8
+- Add Support for OracleLinux-8
+
 ## 2019-09-27 - Release 3.0.0
 
 ### Breaking changes
