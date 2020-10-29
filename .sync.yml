@@ -1,2 +1,2 @@
 spec/spec_helper.rb:
-  hiera_config: 'spec/fixtures/hiera.yaml'
+  mock_with: ':rspec'
