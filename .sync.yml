@@ -1,6 +1,6 @@
 ---
 spec/spec_helper.rb:
   mock_with: ':rspec'
-.travis.yml:
-  branches:
-    - master
+.pdkignore:
+  paths:
+    - /.github/

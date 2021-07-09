@@ -1,6 +1,6 @@
 # file_capability
 
-[![Build Status](https://travis-ci.org/smoeding/puppet-file_capability.svg?branch=master)](https://travis-ci.org/smoeding/puppet-file_capability)
+[![Build Status](https://github.com/smoeding/puppet-file_capability/actions/workflows/CI.yaml/badge.svg)](https://github.com/smoeding/puppet-file_capability/actions/workflows/CI.yaml)
 [![Puppet Forge](http://img.shields.io/puppetforge/v/stm/file_capability.svg)](https://forge.puppetlabs.com/stm/file_capability)
 [![License](https://img.shields.io/github/license/smoeding/puppet-file_capability.svg)](https://raw.githubusercontent.com/smoeding/puppet-file_capability/master/LICENSE)
 

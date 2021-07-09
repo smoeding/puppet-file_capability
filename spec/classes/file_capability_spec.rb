@@ -14,20 +14,18 @@ describe 'file_capability' do
         { manage_package: true }
       end
 
-      case os_facts[:os]['family']
-      when 'Debian'
-        it {
+      it {
+        case os_facts[:os]['family']
+        when 'Debian'
           is_expected.to contain_package('libcap2-bin')
             .with_ensure('installed')
-        }
-      when 'RedHat'
-        it {
+        when 'RedHat'
           is_expected.to contain_package('libcap')
             .with_ensure('installed')
-        }
-      else
-        raise "Unsupported os #{os}"
-      end
+        else
+          raise "Unsupported os #{os}"
+        end
+      }
     end
 
     context "on #{os} with manage_package => false" do
@@ -36,18 +34,16 @@ describe 'file_capability' do
         { manage_package: false }
       end
 
-      case os_facts[:os]['family']
-      when 'Debian'
-        it {
+      it {
+        case os_facts[:os]['family']
+        when 'Debian'
           is_expected.not_to contain_package('libcap2-bin')
-        }
-      when 'RedHat'
-        it {
+        when 'RedHat'
           is_expected.not_to contain_package('libcap')
-        }
-      else
-        raise "Unsupported os #{os}"
-      end
+        else
+          raise "Unsupported os #{os}"
+        end
+      }
     end
 
     context "on #{os} with package_name => bar" do
@@ -68,20 +64,18 @@ describe 'file_capability' do
         { package_ensure: '1.2.3' }
       end
 
-      case os_facts[:os]['family']
-      when 'Debian'
-        it {
+      it {
+        case os_facts[:os]['family']
+        when 'Debian'
           is_expected.to contain_package('libcap2-bin')
             .with_ensure('1.2.3')
-        }
-      when 'RedHat'
-        it {
+        when 'RedHat'
           is_expected.to contain_package('libcap')
             .with_ensure('1.2.3')
-        }
-      else
-        raise "Unsupported os #{os}"
-      end
+        else
+          raise "Unsupported os #{os}"
+        end
+      }
     end
 
     context "on #{os} with file_capabilities set" do
@@ -94,28 +88,26 @@ describe 'file_capability' do
         }
       end
 
-      case os_facts[:os]['family']
-      when 'Debian'
-        it {
+      it {
+        case os_facts[:os]['family']
+        when 'Debian'
           is_expected.to contain_package('libcap2-bin')
             .with_ensure('installed')
 
           is_expected.to contain_file_capability('/bin/ping')
             .with_capability('cap_net_raw=ep')
             .that_requires('Package[libcap2-bin]')
-        }
-      when 'RedHat'
-        it {
+        when 'RedHat'
           is_expected.to contain_package('libcap')
             .with_ensure('installed')
 
           is_expected.to contain_file_capability('/bin/ping')
             .with_capability('cap_net_raw=ep')
             .that_requires('Package[libcap]')
-        }
-      else
-        raise "Unsupported os #{os}"
-      end
+        else
+          raise "Unsupported os #{os}"
+        end
+      }
     end
   end
 end

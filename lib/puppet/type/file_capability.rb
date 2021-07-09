@@ -76,7 +76,7 @@ Puppet::Type.newtype(:file_capability) do
       end
 
       caps.each do |cap|
-        unless cap =~ %r{^([a-zA-Z0-9_]+)(,[a-zA-Z0-9_]+)*[=+-][eip]*$}
+        unless %r{^([a-zA-Z0-9_]+)(,[a-zA-Z0-9_]+)*[=+-][eip]*$}.match?(cap)
           raise Puppet::Error, "capability #{cap} has the wrong format"
         end
       end
