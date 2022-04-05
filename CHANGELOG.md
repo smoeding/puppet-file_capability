@@ -1,3 +1,14 @@
+## 2022-04-05 - Release 4.0.0
+
+### Features
+
+- Add support for Debian 11 (Bullseye)
+
+### Breaking changes
+
+- Remove support for Debian 8
+- Remove support for Ubuntu 14.04
+
 ## 2020-06-22 - Release 3.1.0
 
 ### Features
