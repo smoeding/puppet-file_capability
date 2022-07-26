@@ -1,3 +1,18 @@
+## 2022-07-26 - Release 5.0.0
+
+### Features
+
+- Add support for Ubuntu 22.04 (Jammy Jellyfish)
+- Add support for RedHat 9
+- Add support for OracleLinux 9
+
+### Breaking changes
+
+- Remove support for Debian 9
+- Remove support for Ubuntu 16.04
+- Remove support for CentOS
+- Remove support for Puppet 5
+
 ## 2022-04-05 - Release 4.0.0
 
 ### Features
