@@ -104,10 +104,8 @@ See [REFERENCE.md](https://github.com/smoeding/puppet-file_capability/blob/maste
 
 The type uses a regular expression to validate the `capability` parameter. Unfortunately some illegal specifications are not caught by this check.
 
-Capabilities are only available on more recent operating system releases like RedHat 7 and Debian 8. In addition the file system must support extended attributes to store the capabilities for the file.
-
 The module is currently developed and tested on:
-* Debian 9 (Stretch)
+* Debian 11 (Bullseye)
 
 ## Development
 
