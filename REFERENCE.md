@@ -30,12 +30,12 @@ include file_capability
 
 The following parameters are available in the `file_capability` class:
 
-* [`manage_package`](#manage_package)
-* [`package_ensure`](#package_ensure)
-* [`package_name`](#package_name)
-* [`file_capabilities`](#file_capabilities)
+* [`manage_package`](#-file_capability--manage_package)
+* [`package_ensure`](#-file_capability--package_ensure)
+* [`package_name`](#-file_capability--package_name)
+* [`file_capabilities`](#-file_capability--file_capabilities)
 
-##### <a name="manage_package"></a>`manage_package`
+##### <a name="-file_capability--manage_package"></a>`manage_package`
 
 Data type: `Boolean`
 
@@ -44,7 +44,7 @@ executables with this class. If the package is managed by this class it
 will be installed before any `file_capability` resource is created. The
 default value is `true` as defined in the module hiera data.
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-file_capability--package_ensure"></a>`package_ensure`
 
 Data type: `String`
 
@@ -52,14 +52,14 @@ The state the package should be in. Normally this is either one of the
 strings `installed` or `latest` or a specific version number of the
 package. The module hiera data provides the default value `installed`.
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-file_capability--package_name"></a>`package_name`
 
 Data type: `String`
 
 The name of the package to install. This parameter is operating system
 specific and the default is taken from the module hiera data.
 
-##### <a name="file_capabilities"></a>`file_capabilities`
+##### <a name="-file_capability--file_capabilities"></a>`file_capabilities`
 
 Data type: `Hash[String,Data]`
 
@@ -134,16 +134,16 @@ Default value: `present`
 
 The following parameters are available in the `file_capability` type.
 
-* [`file`](#file)
-* [`provider`](#provider)
+* [`file`](#-file_capability--file)
+* [`provider`](#-file_capability--provider)
 
-##### <a name="file"></a>`file`
+##### <a name="-file_capability--file"></a>`file`
 
 The name of the file for which the capabilities should be managed.
 Default is the resource title. The file will be autorequired if it is
 managed by Puppet.
 
-##### <a name="provider"></a>`provider`
+##### <a name="-file_capability--provider"></a>`provider`
 
 The specific backend to use for this `file_capability` resource. You will seldom need to specify this --- Puppet will
 usually discover the appropriate provider for your platform.
