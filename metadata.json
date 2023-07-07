@@ -1,6 +1,6 @@
 {
   "name": "stm-file_capability",
-  "version": "5.0.0",
+  "version": "6.0.0",
   "author": "stm",
   "summary": "Manage Linux file capabilities with Puppet",
   "license": "BSD-2-Clause",
