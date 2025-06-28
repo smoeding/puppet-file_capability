@@ -1,35 +1,57 @@
-# CI.yaml --- Check Puppet module
+# CI.yaml --- Check OpenVox module
 
 name: CI
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - main
+      - master
   pull_request:
-    branches: [ master ]
-
-  workflow_dispatch:
+    branches:
+      - main
+      - master
+  schedule:
+    - cron: '42 2 * * 0'
 
 jobs:
-  check:
-    name: Puppet ${{ matrix.puppet_version }}
+  checks:
+    name: OpenVox ${{ matrix.openvox_version }}
     runs-on: ubuntu-latest
 
     strategy:
       fail-fast: false
       matrix:
-        puppet_version: [7, 8]
+        openvox_version: [8]
+
+    container:
+      image: ghcr.io/voxpupuli/voxbox:${{ matrix.openvox_version }}
+      volumes:
+        - ${{ github.workspace }}:/repo
+        - /etc/gitconfig:/etc/gitconfig
 
     steps:
       - name: Clone repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Run pdk validate
-        uses: puppets-epic-show-theatre/action-pdk-validate@v1
-        with:
-          puppet-version: ${{ matrix.puppet_version }}
+      - name: Syntax
+        run: rake -f /Rakefile syntax
 
-      - name: Run pdk test unit
-        uses: puppets-epic-show-theatre/action-pdk-test-unit@v1
-        with:
-          puppet-version: ${{ matrix.puppet_version }}
+      - name: Check
+        run: rake -f /Rakefile check
+
+      - name: Lint code
+        run: rake -f /Rakefile lint
+
+      - name: Lint YAML
+        if: ${{ hashFiles('data') != '' }}
+        run: yamllint data/
+
+      - name: Lint Metadata
+        run: rake -f /Rakefile metadata_lint
+
+      - name: Rubocop
+        run: rake -f /Rakefile rubocop
+
+      - name: Unit Tests
+        run: rake -f /Rakefile spec

@@ -1,4 +1,4 @@
-# file_capability_spec.rb --- Test the file_capability type
+# frozen_string_literal: true
 
 require 'spec_helper'
 require 'tempfile'
@@ -12,7 +12,7 @@ describe Puppet::Type.type(:file_capability) do
 
     Puppet::Type.type(:file_capability).new(
       file:       tempfile,
-      capability: 'cap_foo=eip',
+      capability: 'cap_foo=eip'
     )
   end
 
@@ -37,53 +37,53 @@ describe Puppet::Type.type(:file_capability) do
   end
 
   it 'fails for a boolean as capability' do
-    expect {
+    expect do
       Puppet::Type.type(:file_capability).new(
         name:       'foo',
         file:       '/foo/bar/baz.42',
-        capability: true,
+        capability: true
       )
-    }.to raise_error(Puppet::Error)
+    end.to raise_error(Puppet::Error)
   end
 
   it 'fails for a number as capability' do
-    expect {
+    expect do
       Puppet::Type.type(:file_capability).new(
         name:       'foo',
         file:       '/foo/bar/baz.42',
-        capability: 42,
+        capability: 42
       )
-    }.to raise_error(Puppet::Error)
+    end.to raise_error(Puppet::Error)
   end
 
   it 'fails for a missing capability flag' do
-    expect {
+    expect do
       Puppet::Type.type(:file_capability).new(
         name:       'foo',
         file:       tempfile,
-        capability: 'cap_foo',
+        capability: 'cap_foo'
       )
-    }.to raise_error(Puppet::Error)
+    end.to raise_error(Puppet::Error)
   end
 
   it 'fails for a wrong capability flag' do
-    expect {
+    expect do
       Puppet::Type.type(:file_capability).new(
         name:       'foo',
         file:       tempfile,
-        capability: 'cap_foo=x',
+        capability: 'cap_foo=x'
       )
-    }.to raise_error(Puppet::Error)
+    end.to raise_error(Puppet::Error)
   end
 
   it 'fails for a wrong capability operator' do
-    expect {
+    expect do
       Puppet::Type.type(:file_capability).new(
         name:       'foo',
         file:       tempfile,
-        capability: 'cap_foo$eip',
+        capability: 'cap_foo$eip'
       )
-    }.to raise_error(Puppet::Error)
+    end.to raise_error(Puppet::Error)
   end
 
   it 'does autorequire the file it manages' do

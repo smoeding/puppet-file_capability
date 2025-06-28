@@ -1,4 +1,4 @@
-# file_capability.rb --- file_capability type
+# frozen_string_literal: true
 
 Puppet::Type.newtype(:file_capability) do
   desc <<-EOT
@@ -49,9 +49,7 @@ Puppet::Type.newtype(:file_capability) do
     EOT
 
     validate do |value|
-      unless Pathname.new(value).absolute?
-        raise ArgumentError, "file #{value} is not an absolute path"
-      end
+      raise ArgumentError, "file #{value} is not an absolute path" unless Pathname.new(value).absolute?
     end
   end
 
@@ -76,9 +74,7 @@ Puppet::Type.newtype(:file_capability) do
       end
 
       caps.each do |cap|
-        unless %r{^([a-zA-Z0-9_]+)(,[a-zA-Z0-9_]+)*[=+-][eip]*$}.match?(cap)
-          raise Puppet::Error, "capability #{cap} has the wrong format"
-        end
+        raise Puppet::Error, "capability #{cap} has the wrong format" unless %r{^([a-zA-Z0-9_]+)(,[a-zA-Z0-9_]+)*[=+-][eip]*$}.match?(cap)
       end
     end
   end
@@ -90,9 +86,7 @@ Puppet::Type.newtype(:file_capability) do
   validate do
     return if self[:ensure] == :absent
 
-    if self[:capability].nil? || self[:capability].empty?
-      raise Puppet::Error, 'capability is a required attribute'
-    end
+    raise Puppet::Error, 'capability is a required attribute' if self[:capability].nil? || self[:capability].empty?
 
     raise Puppet::Error, 'file is a required attribute' if self[:file].nil?
   end

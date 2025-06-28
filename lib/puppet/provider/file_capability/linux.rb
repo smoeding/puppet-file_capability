@@ -1,4 +1,4 @@
-# linux.rb --- file_capability linux provider
+# frozen_string_literal: true
 
 Puppet::Type.type(:file_capability).provide(:linux) do
   desc <<-EOT
