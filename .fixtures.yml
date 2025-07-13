@@ -1,3 +1,1 @@
-fixtures:
-  symlinks:
-    file_capability: "#{source_dir}"
+---
