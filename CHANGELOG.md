@@ -1,3 +1,21 @@
+## 2025-09-12 - Release 7.0.0
+
+### Features
+
+- Add support for RedHat-10.
+- Add support for OracleLinux-10.
+- Add support for Debian-12 Bookworm.
+- Add support for Debian-13 Trixie.
+- Add support for Ubuntu-24.04 Noble Numbat.
+
+### Breaking changes
+
+- Drop support for RedHat-7.
+- Drop support for OracleLinux-7.
+- Drop support for Debian-10 Buster.
+- Drop support for Ubuntu-18.04 Bionic Beaver.
+- Drop support for Puppet; add support for OpenVox.
+
 ## 2023-07-07 - Release 6.0.0
 
 ### Features
